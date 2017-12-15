@@ -1,0 +1,28 @@
+body {
+  background: rgb(204, 199, 199);
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.languages {
+  display: flex;
+  justify-content: center;
+  default: none;
+  li {
+    margin: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

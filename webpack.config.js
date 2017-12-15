@@ -2,11 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var extractPlugin = new ExtractTextPlugin({
-   filename: 'main.css'
-});
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -24,22 +20,21 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'react']
+            presets: ['env', 'react', 'stage-0']
           }
         }
       },
       {
-        test: /\.scss$/,
-        use: extractPlugin.extract({
+        test: /\.(s*)css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
           use: ['css-loader', 'sass-loader']
         })
       }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    }),
-    extractPlugin
+    new ExtractTextPlugin({filename: 'index_bundle.css'}),
+    new HtmlWebpackPlugin({template: 'src/index.html'}),
   ]
 }
