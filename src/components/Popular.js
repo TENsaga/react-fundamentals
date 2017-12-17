@@ -1,48 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import SelectLanguage from '../components/SelectLanguage';
+import RepoGrid from '../components/RepoGrid';
 
-const SelectLanguage = ({ selectedLanguage, onSelect }) => {
-  const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'].map(
-    lang => (
-      <li
-        key={lang}
-        style={lang === selectedLanguage ? { color: '#d0021b' } : null}
-        onClick={onSelect.bind(null, lang)}
-      >
-        {lang}
-      </li>
-    )
+// Popular is in PopularContainer, contains RepoGrid, SelectLanguage
+export default function Popular({
+  repos,
+  selectedLanguage,
+  onSelect: updateLanguage
+}) {
+  return (
+    <div>
+      <SelectLanguage
+        selectedLanguage={selectedLanguage}
+        onSelect={updateLanguage}
+      />
+      {!repos ? <p>Loading...</p> : <RepoGrid repos={repos} />}
+    </div>
   );
-  return <ul className="languages">{languages}</ul>;
-};
-
-SelectLanguage.propTypes = {
-  selectedLanguage: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired
-};
-
-class Popular extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedLanguage: 'All'
-    };
-  }
-
-  updateLanguage = lang => {
-    this.setState(() => ({ selectedLanguage: lang }));
-  };
-
-  render() {
-    return (
-      <div>
-        <SelectLanguage
-          selectedLanguage={this.state.selectedLanguage}
-          onSelect={this.updateLanguage}
-        />
-      </div>
-    );
-  }
 }
-
-export default Popular;
