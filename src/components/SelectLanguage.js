@@ -6,7 +6,7 @@ SelectLanguage.propTypes = {
   onSelect: func.isRequired,
 };
 
-// SelectLanguage is in Popular
+// Parent: Popular
 export default function SelectLanguage({ selectedLanguage, onSelect }) {
   const languages = [ 'All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python' ].map(lang => (
     <li

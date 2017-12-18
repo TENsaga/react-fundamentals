@@ -1,25 +1,37 @@
-import React from 'react';
-import { arrayOf, object, string, func } from 'prop-types';
+import React, { Component } from 'react';
 
-import SelectLanguage from '../components/SelectLanguage';
-import RepoGrid from '../components/RepoGrid';
+import fetchPopularRepos from '../utils/api';
+import SelectLanguage from './SelectLanguage';
+import RepoGrid from './RepoGrid';
 
-Popular.propTypes = {
-  repos: arrayOf(object),
-  selectedLanguage: string.isRequired,
-  onSelect: func.isRequired,
-};
+// Parent: App, Children: SelectLanguage, RepoGrid
+export default class Popular extends Component {
+  state = {
+    selectedLanguage: '',
+    repos: null,
+  };
 
-Popular.defaultProps = {
-  repos: null,
-};
+  componentDidMount() {
+    this.handleUpdateLanguage('All');
+  }
 
-// Popular is in PopularContainer, contains RepoGrid, SelectLanguage
-export default function Popular({ repos, selectedLanguage, onSelect: handleUpdateLanguage }) {
-  return (
-    <div>
-      <SelectLanguage selectedLanguage={selectedLanguage} onSelect={handleUpdateLanguage} />
-      {!repos ? <p>Loading...</p> : <RepoGrid repos={repos} />}
-    </div>
-  );
+  handleUpdateLanguage = (lang) => {
+    if (this.state.selectedLanguage === lang) return;
+    this.setState({
+      selectedLanguage: lang,
+      repos: null,
+    });
+
+    fetchPopularRepos(lang).then(repos => this.setState({ repos }));
+  };
+
+  render() {
+    const { selectedLanguage, repos } = this.state;
+    return (
+      <div>
+        <SelectLanguage selectedLanguage={selectedLanguage} onSelect={this.handleUpdateLanguage} />
+        {!repos ? <p>Loading...</p> : <RepoGrid repos={repos} />}
+      </div>
+    );
+  }
 }

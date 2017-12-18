@@ -6,7 +6,7 @@ RepoItem.propTypes = {
   repo: object.isRequired,
 };
 
-// RepoItem(s) are in RepoGrid
+// Parent: RepoGrid
 export default function RepoItem({ repo, rank }) {
   const {
     name,
