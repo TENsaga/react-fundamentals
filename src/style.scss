@@ -1,6 +1,7 @@
 body {
-  background: rgb(204, 199, 199);
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+  background: rgb(255, 255, 255);
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: rgb(100, 100, 100);
 }
 
 ul {
@@ -50,3 +51,19 @@ li {
   font-size: 20px;
   margin: 10px;
 }
+
+.loader-container {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .loader {
+    width: 20%;
+  } h2 {
+    padding-top: 1rem;
+    color: rgb(100, 100, 100);
+    font-style: italic;
+  }
+}
+
+
