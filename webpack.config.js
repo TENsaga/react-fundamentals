@@ -10,6 +10,7 @@ module.exports = {
     // output folder will be ourApp/dist/index_bundle.js
     path: path.resolve(__dirname, 'dist'), // dirname references the current directory the script is run in
     filename: 'index_bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -38,6 +39,9 @@ module.exports = {
         },
       },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new ExtractTextPlugin({ filename: 'index_bundle.css' }),
