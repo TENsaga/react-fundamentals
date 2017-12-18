@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PlayerInput from './PlayerInput';
 import Player from './Player';
 
+// Parent: App, Children: PlayerInput, Player
 export default class Battle extends Component {
   state = {
     playerOneName: '',

@@ -7,7 +7,7 @@ RepoGrid.propTypes = {
   repos: arrayOf(object).isRequired,
 };
 
-// Parent: Popular, Children: RepoItem(s)
+// Parent: Popular, Children: RepoItem
 export default function RepoGrid({ repos }) {
   const repoComponents = repos.map((repo, index) => (
     <RepoItem key={repo.name} repo={repo} rank={index + 1} />

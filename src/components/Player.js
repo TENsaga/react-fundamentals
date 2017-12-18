@@ -12,7 +12,7 @@ export default function Player({
   id, avatar, username, onClick,
 }) {
   return (
-    <div>
+    <div className="column">
       <img className="avatar" src={avatar} alt="User Avatar" />
       <h2>@{username}</h2>
       <button className="reset" onClick={() => onClick(id)}>
