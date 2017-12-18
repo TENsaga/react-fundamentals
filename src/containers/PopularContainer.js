@@ -1,36 +1,34 @@
 import React, { Component } from 'react';
+
 import { fetchPopularRepos } from '../utils/api';
 import Popular from '../components/Popular';
 
 export default class PopularContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedLanguage: '',
-      repos: null
-    };
-  }
+  state = {
+    selectedLanguage: '',
+    repos: null,
+  };
 
   componentDidMount() {
-    this.updateLanguage('All');
+    this.handleUpdateLanguage('All');
   }
 
-  updateLanguage = lang => {
+  handleUpdateLanguage = (lang) => {
     if (this.state.selectedLanguage === lang) return;
-    this.setState(() => ({
+    this.setState({
       selectedLanguage: lang,
-      repos: null
-    }));
+      repos: null,
+    });
 
-    fetchPopularRepos(lang).then(repos => this.setState({ repos: repos }));
+    fetchPopularRepos(lang).then(repos => this.setState({ repos }));
   };
 
   render() {
     return (
       <Popular
+        onSelect={this.handleUpdateLanguage}
         repos={this.state.repos}
         selectedLanguage={this.state.selectedLanguage}
-        onSelect={this.updateLanguage}
       />
     );
   }
