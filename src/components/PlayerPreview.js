@@ -1,23 +1,24 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, element } from 'prop-types';
 
 PlayerPreview.propTypes = {
-  id: string.isRequired,
   avatar: string.isRequired,
   username: string.isRequired,
-  onReset: func.isRequired,
+  children: element,
 };
 
-export default function PlayerPreview({
-  id, avatar, username, onReset,
-}) {
+PlayerPreview.defaultProps = {
+  children: null,
+};
+
+// onError={() => onReset(id)}
+// Parent: Battle, Profile
+export default function PlayerPreview({ avatar, username, children }) {
   return (
     <div className="column">
-      <img className="avatar" src={avatar} alt={`Avatar for ${ username }`} onError={() => onReset(id)} />
+      <img className="avatar" src={avatar} alt={`Avatar for ${ username }`} />
       <h2 className="username">@{username}</h2>
-      <button className="reset" onClick={() => onReset(id)}>
-        Reset
-      </button>
+      {children}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { object } from 'prop-types';
 import PlayerInput from './PlayerInput';
 import PlayerPreview from './PlayerPreview';
 
+// import { getFollowers, getProfile, getRepos } from '../utils/api';
 // Parent: App, Children: PlayerInput, PlayerPreview
 export default class Battle extends Component {
   state = {
@@ -69,12 +70,11 @@ export default class Battle extends Component {
               onUpdate={this.handleChange}
             />
           ) : (
-            <PlayerPreview
-              id="playerOne"
-              avatar={playerOneImage}
-              username={playerOneName}
-              onReset={this.handleReset}
-            />
+            <PlayerPreview avatar={playerOneImage} username={playerOneName}>
+              <button className="reset" onClick={() => this.handleReset('playerOne')}>
+                Reset
+              </button>
+            </PlayerPreview>
           )}
           {!playerTwoReady ? (
             <PlayerInput
@@ -85,12 +85,11 @@ export default class Battle extends Component {
               onUpdate={this.handleChange}
             />
           ) : (
-            <PlayerPreview
-              id="playerTwo"
-              avatar={playerTwoImage}
-              username={playerTwoName}
-              onReset={this.handleReset}
-            />
+            <PlayerPreview avatar={playerTwoImage} username={playerTwoName}>
+              <button className="reset" onClick={() => this.handleReset('playerTwo')}>
+                Reset
+              </button>
+            </PlayerPreview>
           )}
         </div>
         {playerOneReady &&

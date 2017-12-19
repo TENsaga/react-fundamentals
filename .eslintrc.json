@@ -30,6 +30,9 @@
     // keep it simple
     "complexity": [1, 5],
 
+    // allow console, mainly console.warn
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+
     // react
     "react/prefer-es6-class": 0,
     "react/jsx-filename-extension": 0,

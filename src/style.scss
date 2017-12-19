@@ -10,8 +10,10 @@ ul {
 
 li {
   list-style-type: none;
-  font-weight: bold;
-  margin: 10px;
+  .nav & {
+    font-weight: bold;
+    margin: 10px;
+  }
 }
 
 a {
@@ -146,4 +148,10 @@ a {
   &:focus {
     outline:0;
   }
+}
+
+.header {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 200;
 }
