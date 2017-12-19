@@ -138,8 +138,12 @@ a {
   background: transparent;
   color: #d0021b;
   display: block;
-  width: 100%;
   text-align: center;
   font: inherit;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline:0;
+  }
 }

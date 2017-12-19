@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { object } from 'prop-types';
 
 import PlayerInput from './PlayerInput';
-import Player from './Player';
+import PlayerPreview from './PlayerPreview';
 
-// Parent: App, Children: PlayerInput, Player
+// Parent: App, Children: PlayerInput, PlayerPreview
 export default class Battle extends Component {
   state = {
     playerOneName: '',
@@ -45,6 +47,7 @@ export default class Battle extends Component {
   };
 
   render() {
+    const { match } = this.props;
     const {
       playerOneReady,
       playerTwoReady,
@@ -55,40 +58,58 @@ export default class Battle extends Component {
     } = this.state;
 
     return (
-      <div className="row">
-        {!playerOneReady ? (
-          <PlayerInput
-            id="playerOne"
-            label="Player One"
-            name={playerOneName}
-            onSubmit={this.handleSubmit}
-            onUpdate={this.handleChange}
-          />
-        ) : (
-          <Player
-            id="playerOne"
-            avatar={playerOneImage}
-            username={playerOneName}
-            onClick={this.handleReset}
-          />
-        )}
-        {!playerTwoReady ? (
-          <PlayerInput
-            id="playerTwo"
-            label="Player Two"
-            name={playerTwoName}
-            onSubmit={this.handleSubmit}
-            onUpdate={this.handleChange}
-          />
-        ) : (
-          <Player
-            id="playerTwo"
-            avatar={playerTwoImage}
-            username={playerTwoName}
-            onClick={this.handleReset}
-          />
-        )}
+      <div>
+        <div className="row">
+          {!playerOneReady ? (
+            <PlayerInput
+              id="playerOne"
+              label="Player One"
+              name={playerOneName}
+              onSubmit={this.handleSubmit}
+              onUpdate={this.handleChange}
+            />
+          ) : (
+            <PlayerPreview
+              id="playerOne"
+              avatar={playerOneImage}
+              username={playerOneName}
+              onReset={this.handleReset}
+            />
+          )}
+          {!playerTwoReady ? (
+            <PlayerInput
+              id="playerTwo"
+              label="Player Two"
+              name={playerTwoName}
+              onSubmit={this.handleSubmit}
+              onUpdate={this.handleChange}
+            />
+          ) : (
+            <PlayerPreview
+              id="playerTwo"
+              avatar={playerTwoImage}
+              username={playerTwoName}
+              onReset={this.handleReset}
+            />
+          )}
+        </div>
+        {playerOneReady &&
+          playerTwoReady && (
+            <Link
+              className="button"
+              to={{
+                pathname: `${ match.url }/results`,
+                search: `?playerOneName=${ playerOneName }&playerTwoName=${ playerTwoName }`,
+              }}
+            >
+              Battle
+            </Link>
+          )}
       </div>
     );
   }
 }
+
+Battle.propTypes = {
+  match: object.isRequired,
+};

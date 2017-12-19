@@ -18,7 +18,7 @@ export default function PlayerInput({
 }) {
   return (
     <div>
-      <form className="column" onSubmit={e => onSubmit(e, id)} >
+      <form className="column" onSubmit={e => onSubmit(e, id)}>
         <label className="header" htmlFor="username">
           {label}
         </label>
