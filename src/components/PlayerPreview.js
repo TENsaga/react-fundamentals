@@ -11,7 +11,6 @@ PlayerPreview.defaultProps = {
   children: null,
 };
 
-// onError={() => onReset(id)}
 // Parent: Battle, Profile
 export default function PlayerPreview({ avatar, username, children }) {
   return (

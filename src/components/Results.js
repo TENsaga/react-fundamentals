@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 import { object, string } from 'prop-types';
 
+import Loading from './Loading';
 import Player from './Player';
 import * as api from '../utils/api';
 
@@ -44,7 +45,7 @@ export default class Results extends Component {
     } = this.state;
 
     if (loading) {
-      return <p>Loading...</p>;
+      return <Loading loadText="Calculating Results..." />;
     }
 
     if (error) {

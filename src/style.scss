@@ -10,7 +10,7 @@ ul {
 
 li {
   list-style-type: none;
-  .nav & {
+  .nav &, .languages & {
     font-weight: bold;
     margin: 10px;
   }

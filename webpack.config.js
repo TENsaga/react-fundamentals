@@ -1,10 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+const config = {
   entry: [ './src/index.js' ],
   output: {
     // output folder will be ourApp/dist/index_bundle.js
@@ -48,3 +48,16 @@ module.exports = {
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
   ],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+  );
+}
+
+module.exports = config;

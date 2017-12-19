@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=development webpack-dev-server --inline --content-base build/ --port 8100",
     "build.dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
-    "build.prod": "cross-env NODE_ENV=production webpack --config webpack.config.js -p"
+    "build.prod": "cross-env NODE_ENV=production webpack --config webpack.config.js -p",
+    "deploy": "npm run build.prod && firebase deploy",
+    "firebase-init": "firebase login && firebase init"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +30,7 @@
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "~3.0.2",
     "file-loader": "~1.1.6",
+    "firebase-tools": "~3.16.0",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",
     "prop-types": "~15.6.0",

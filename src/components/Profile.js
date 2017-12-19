@@ -7,11 +7,11 @@ Profile.propTypes = {
   info: object.isRequired,
 };
 
-// Parent: Player
+// Parent: Player, Children: PlayerPreview
 export default function Profile({ info }) {
   return (
     <PlayerPreview username={info.login} avatar={info.avatar_url}>
-      <ul className="space-list-items">
+      <ul className="space-list-items column">
         {info.name && <li>{info.name}</li>}
         {info.location && <li>{info.location}</li>}
         {info.company && <li>{info.company}</li>}
